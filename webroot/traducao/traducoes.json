@@ -1,0 +1,85 @@
+{
+  "usuarios": {
+    "traducao": "Usuários",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar",
+      "alterarSenha": "Alterar Senha",
+      "recuperarSenha": "Recuperar Minha Senha",
+      "novaSenha": "Nova Senha",
+      "login": "Login"
+    }
+  },
+  "alunos": {
+    "traducao": "Alunos",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar"
+    }
+  },
+  "nucleos": {
+    "traducao": "Núcleos",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar"
+    }
+  },
+  "modalidades": {
+    "traducao": "Modalidades",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar"
+    }
+  },
+  "cursos": {
+    "traducao": "Cursos",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar"
+    }
+  },
+  "cursosalunos": {
+    "traducao": "Adicionar Aluno ao Curso",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar"
+    }
+  },
+  "alunossaudes": {
+    "traducao": "Informações de Saúde",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar"
+    }
+  },
+  "questionarios": {
+    "traducao": "Questionários de Saúde",
+    "acoes": {
+      "index": "Listagem",
+      "add": "Novo(a)",
+      "view": "Consulta",
+      "edit": "Editar"
+    }
+  },
+  "relatorios": {
+    "traducao": "Relatórios",
+    "acoes": {
+      "alunos": "Alunos",
+      "cursos": "Cursos"
+    }
+  }
+}

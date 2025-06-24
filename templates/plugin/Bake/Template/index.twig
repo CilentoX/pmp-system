@@ -1,0 +1,92 @@
+{#
+/**
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @since         2.0.0
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+#}
+<?php
+/**
+ * @var \{{ namespace }}\View\AppView $this
+ * @var \{{ entityClass }}[]|\Cake\Collection\CollectionInterface ${{ pluralVar }}
+ */
+?>
+
+<div class="row">
+    <div class="col-md-6 form-group">
+        <?php echo $this->Html->link('Novo(a)', ['action' => 'add'], ['class' => 'btn btn-primary']); ?>
+    </div>
+
+    <div class="col-md-6 form-group">
+        <?= $this->Form->create(null, ['type' => 'GET', 'url' => ['action' => 'index']]); ?>
+        <?php $this->Form->setTemplates(['inputContainer' => '{{ '{{' }}content{{ '}}' }}']); ?>
+        <div class="input-group">
+            <?= $this->Form->control('nome', ['label' => false, 'class' => 'form-control', 'placeholder' => 'Digite sua busca...']); ?>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" id="button-addon2">Pesquisar</button>
+            </div>
+        </div>
+        <?= $this->Form->end(); ?>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+        <tr>
+            {% for field in fields %}
+                <th><?= $this->Paginator->sort('{{ field }}') ?></th>
+            {% endfor %}
+            <th class="actions"><?= __('Opções') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach (${{ pluralVar }} as ${{ singularVar }}): ?>
+        <tr>
+            {% for field in fields %}
+                {% set isKey = false %}
+                {% if associations.BelongsTo is defined %}
+                    {% for alias, details in associations.BelongsTo %}
+                        {% if field == details.foreignKey %}
+                            {% set isKey = true %}
+                            <td><?= ${{ singularVar }}->has('{{ details.property }}') ? $this->Html->link(${{ singularVar }}->{{ details.property }}->{{ details.displayField }}, ['controller' => '{{ details.controller }}', 'action' => 'view', ${{ singularVar }}->{{ details.property }}->{{ details.primaryKey[0] }}]) : '' ?></td>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if isKey is not same as(true) %}
+                    {% set columnData = Bake.columnData(field, schema) %}
+                    {% if columnData.type not in ['integer', 'float', 'decimal', 'biginteger', 'smallinteger', 'tinyinteger'] %}
+                        <td><?= h(${{ singularVar }}->{{ field }}) ?></td>
+                    {% else %}
+                        <td><?= $this->Number->format(${{ singularVar }}->{{ field }}) ?></td>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            {% set pk = '$' ~ singularVar ~ '->' ~ primaryKey[0] %}
+            <td class="actions">
+                <?= $this->Html->link('<i class="fas fa-eye"></i>', ['action' => 'view', {{ pk|raw }}], ['escape'=>false, 'class'=>'btn btn-default', 'data-tooltip'=>'tooltip', 'title'=>'Visualizar', 'data-toggle'=>'modal', 'data-target'=>'.view']) ?>
+                <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', {{ pk|raw }}], ['escape'=>false, 'class'=>'btn btn-default', 'data-tooltip'=>'tooltip', 'title'=>'Editar']) ?>
+                <?= $this->Form->postLink('<i class="fas fa-trash-alt"></i>', ['action' => 'delete', {{ pk|raw }}], ['escape'=>false, 'class'=>'btn btn-default', 'confirm' => __('Deseja realmente excluir # {0}?', {{ pk|raw }}), 'data-tooltip'=>'tooltip', 'title'=>'Excluir']) ?>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<div class="paginator">
+    <ul class="pagination">
+        <?= $this->Paginator->first('<<') ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->last('>>') ?>
+    </ul>
+    <p><?= $this->Paginator->counter('Página {{ '{{' }}page{{ '}}' }} de {{ '{{' }}pages{{ '}}' }}, mostrando {{ '{{' }}current{{ '}}' }} linha(s) de um total de {{ '{{' }}count{{ '}}' }}, começando em {{ '{{' }}start{{ '}}' }}, terminado {{ '{{' }}end{{ '}}' }}') ?></p>
+</div>
+

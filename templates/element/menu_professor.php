@@ -1,0 +1,1 @@
+<li class="nav-item"><?= $this->Html->link('<i class="fas fa-child"></i> <p>Aulas</p>', ['controller' => 'cursos', 'action' => 'index'], ['escape' => false, 'class' => 'nav-link']); ?></li>
